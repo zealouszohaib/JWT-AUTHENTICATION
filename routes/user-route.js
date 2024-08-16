@@ -6,12 +6,12 @@ import { authenticateToken } from "../middleWare/authorization.js";
 
 const router = express.Router();
 
-router.get("/",authenticateToken, async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const user = await pool.query("SELECT * FROM users");
     res.json({ users: user.rows });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message + "zohaib" });
   }
 });
 
@@ -29,5 +29,6 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 export default router;

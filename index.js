@@ -6,12 +6,11 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import UserRouter from "./routes/user-route.js";
 import authRouter from "./routes/auth-route.js";
-// require('dotenv').config();
 dotenv.config();
 
 
-console.log(process.env.ACCESS_TOKEN_SECRET);
-console.log(process.env.REFRESH_TOKEN_SECRET);
+// console.log(process.env.ACCESS_TOKEN_SECRET);
+// console.log(process.env.REFRESH_TOKEN_SECRET);
  // set veriable into process.env.variables that are presnt into the file .env
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

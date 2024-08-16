@@ -30,11 +30,42 @@ router.post("/login", async (req, res) => {
     let tokens = jwtTokens(user.rows[0]);
 
     console.log(tokens);
-    
+
     res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
     res.json(tokens);
   } catch (error) {
     return res.status(401).json({ error: error.message });
+  }
+});
+
+router.get("/refresh_token", (req, res) => {
+  try {
+    const refreshToken = req.cookies.refresh_token;
+    // console.log(refreshToken);
+
+    if (refreshToken == null)
+      return res.status(401).json({ error: "no Refresh token " });
+
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
+      if (error) {
+        res.status(403).json({ error: error.message });
+      }
+
+      let tokens = jwtTokens(user);
+      res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
+      res.json(tokens);
+    });
+  } catch (error) {
+    return res.status(401).json({ error: error.message });
+  }
+});
+
+router.delete("/refresh_token", (req, res) => {
+  try {
+    res.clearCookie("refresh_token");
+    return res.status(200).json({ error: "successfully refresh token" });
+  } catch (error) {
+    res.status(401).json({ error: error.message });
   }
 });
 
