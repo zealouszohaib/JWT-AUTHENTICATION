@@ -1,0 +1,26 @@
+POST    http://localhost:3000/api/users
+Content-Type: application/json
+
+
+{
+        "name":"zohaib",
+        "email":"zohib@gmail.com",
+        "password":"zohaib"
+}
+
+
+###
+POST   http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+
+{
+       
+        "name":"zohaib",
+        "email":"zohib@gmail.com",
+        "password":"zohaib"
+}
+
+######
+GET    http://localhost:3000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiN2RmMzM0ODctNDgxMS00ZmJmLWE3ZTYtZDFhNTkwMjdmYTcxIiwidXNlcl9uYW1lIjoiem9oYWliIiwidXNlcl9lbWFpbCI6InpvaGliQGdtYWlsLmNvbSIsImlhdCI6MTcyMzgyOTc2NiwiZXhwIjoxNzIzODI5Nzg2fQ.KlOAQvh0NulX_KqRaZArYDHF4D1F0_-i0MZPaB2EitE
