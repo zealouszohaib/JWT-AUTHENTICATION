@@ -2,12 +2,14 @@ import express, { response } from "express";
 import pool from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 import { jwtTokens } from "../utils/jwt-helper.js";
 
 const router = express.Router();
 
 router.post("/login", async (req, res) => {
   try {
+
     const { email, password } = req.body;
 
     const user = await pool.query("SELECT * FROM users WHERE user_email=$1", [
@@ -24,15 +26,18 @@ router.post("/login", async (req, res) => {
       user.rows[0].user_password
     );
 
-    if (!validPassword) res.status(401).json({ error: "incorrect password" });
+    if (!validPassword)    return res.status(401).json({ error: "incorrect password" });
     //jwt token
 
     let tokens = jwtTokens(user.rows[0]);
 
-    console.log(tokens);
+    // console.log(tokens);
 
     res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
+
     res.json(tokens);
+
+
   } catch (error) {
     return res.status(401).json({ error: error.message });
   }
@@ -41,20 +46,26 @@ router.post("/login", async (req, res) => {
 router.get("/refresh_token", (req, res) => {
   try {
     const refreshToken = req.cookies.refresh_token;
+
     // console.log(refreshToken);
 
     if (refreshToken == null)
       return res.status(401).json({ error: "no Refresh token " });
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (error, user) => {
+
       if (error) {
         res.status(403).json({ error: error.message });
       }
 
       let tokens = jwtTokens(user);
+
       res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
+
       res.json(tokens);
+
     });
+
   } catch (error) {
     return res.status(401).json({ error: error.message });
   }
@@ -62,8 +73,11 @@ router.get("/refresh_token", (req, res) => {
 
 router.delete("/refresh_token", (req, res) => {
   try {
+
     res.clearCookie("refresh_token");
+    
     return res.status(200).json({ error: "successfully refresh token" });
+
   } catch (error) {
     res.status(401).json({ error: error.message });
   }

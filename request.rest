@@ -3,9 +3,12 @@ Content-Type: application/json
 
 
 {
-        "name":"ali",
-        "email":"ali@gmail.com",
-        "password":"ali"
+
+        "fname":"ali",
+        "lname":"ali",
+        "email":"zeal@gmail.com",
+        "password":"ali",
+        "orgname":"abc"
 }
 
 
@@ -16,14 +19,14 @@ Content-Type: application/json
 
 {
        
-        "name":"zohaib",
-        "email":"zohib@gmail.com",
-        "password":"zohaib"
+        "name":"ali",
+        "email":"zeal@gmail.com",
+        "password":"ali"
 }
 
 ######
 GET    http://localhost:3000/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiN2RmMzM0ODctNDgxMS00ZmJmLWE3ZTYtZDFhNTkwMjdmYTcxIiwidXNlcl9uYW1lIjoiem9oYWliIiwidXNlcl9lbWFpbCI6InpvaGliQGdtYWlsLmNvbSIsImlhdCI6MTcyMzg0MDAyOSwiZXhwIjoxNzIzODQwMDQ5fQ.ngSr5SzyaGJztmpr6LZEH4r3boMWwoBPdiPfuutP9YE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmIzOGYzYjktMzE5MC00MmNiLWJkODUtY2UxNjVmNTFiMWQ5IiwidXNlcl9lbWFpbCI6InplYWxAZ21haWwuY29tIiwiaWF0IjoxNzIzODQyMzM4LCJleHAiOjE3MjM4NDIzNTh9.l9348W-trypQU0a37XEd9XfxxPgRiGuBuEXtklLk0Dk
 
 ###
 GET   http://localhost:3000/api/auth/refresh_token

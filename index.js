@@ -27,6 +27,8 @@ app.use(cookieParser());
 app.use("/", express.static(join(__dirname, "public")));
 
 app.use("/api/users", UserRouter);
+
+
 app.use("/api/auth", authRouter);
 
 app.listen(port, () => console.log(`server is running at the port${port}`));
